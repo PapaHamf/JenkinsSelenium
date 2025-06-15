@@ -10,6 +10,12 @@ class TestRegister(BaseClass):
 
     URL: str = "http://seleniumdemo.com/?page_id=7"
 
+    @allure.parent_suite("Tests for Selenium demo")
+    @allure.suite("Tests for customer login")
+    @allure.tag("Account registration", "User registration")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.testcase("Test case no 1")
+    @allure.description("This test attempts to register the user.")
     # @pytest.mark.skip
     def test_user_registration(self):
         self.driver.get(TestRegister.URL)
@@ -25,7 +31,7 @@ class TestRegister(BaseClass):
     @allure.suite("Tests for customer login")
     @allure.tag("Account login", "User login")
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.testcase("Test case no 1")
+    @allure.testcase("Test case no 2")
     @allure.description("This test attempts to log in on the user account.")
     def test_user_login(self):
         self.driver.get(TestRegister.URL)
