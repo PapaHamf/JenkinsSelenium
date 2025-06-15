@@ -10,10 +10,18 @@ def setup(request):
     Set-ups the environment for the tests.
     """
     chrome_options: ChromeOptions = webdriver.ChromeOptions()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Remote(
+        command_executor= 'http://selenium:4444/wd/hub',
+        options=chrome_options
+    )
+    # chrome_options: ChromeOptions = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless")
     # chrome_options.add_argument("--ignore-certificate-errors")
-    service_obj = Service("/home/student/tester/chromedriver-linux64/chromedriver")
-    driver = webdriver.Chrome(service=service_obj, options= chrome_options)
+    # service_obj = Service("/home/student/tester/chromedriver-linux64/chromedriver")
+    # driver = webdriver.Chrome(service=service_obj, options= chrome_options)
     # driver = webdriver.Chrome()
     driver.implicitly_wait(5)
     request.cls.driver = driver
