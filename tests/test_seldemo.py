@@ -1,6 +1,7 @@
 import pytest
 import time
 import allure
+import os
 
 from pageobjects.login_page import LoginPage
 from utils.baseclass import BaseClass
@@ -9,11 +10,12 @@ class TestRegister(BaseClass):
 
     URL: str = "http://seleniumdemo.com/?page_id=7"
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_user_registration(self):
         self.driver.get(TestRegister.URL)
         login_page = LoginPage(self.driver)
-        login_page.get_email_add().send_keys("mareczek@testowy.pl")
+        email = os.environ.get("EMAIL")
+        login_page.get_email_add().send_keys(email)
         login_page.get_passwd_reg().send_keys("mareczek1234$")
         login_page.get_reg_button().click()
         time.sleep(5)
@@ -28,7 +30,8 @@ class TestRegister(BaseClass):
         self.driver.get(TestRegister.URL)
         login_page = LoginPage(self.driver)
         with allure.step("Step 1: Enter the username"):
-            login_page.get_log_email_add().send_keys("mareczek@testowy.pl")
+            email = os.environ.get("EMAIL")
+            login_page.get_log_email_add().send_keys(email)
         with allure.step("Step 2: Enter the password"):
             login_page.get_log_passwd().send_keys("mareczek1234$")
         with allure.step("Step 3: Clicking the button"):
