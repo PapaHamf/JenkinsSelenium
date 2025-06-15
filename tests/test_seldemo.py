@@ -16,7 +16,7 @@ class TestRegister(BaseClass):
         login_page = LoginPage(self.driver)
         email = os.environ.get("EMAIL")
         login_page.get_email_add().send_keys(email)
-        passwd = os.environ.get("PSSWD")
+        passwd = os.environ.get("PASSWD")
         login_page.get_passwd_reg().send_keys(passwd)
         login_page.get_reg_button().click()
         time.sleep(5)
@@ -34,7 +34,7 @@ class TestRegister(BaseClass):
             email = os.environ.get("EMAIL")
             login_page.get_log_email_add().send_keys(email)
         with allure.step("Step 2: Enter the password"):
-            passwd = os.environ.get("PSSWD")
+            passwd = os.environ.get("PASSWD")
             login_page.get_log_passwd().send_keys(passwd)
         with allure.step("Step 3: Clicking the button"):
             login_page.get_log_button().click()
