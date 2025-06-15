@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    triggers {
+        cron('H/2 * * * *')
+    }
+
+    parameters {
+        string(name: 'MESSAGE', defaultValue: 'Hello World!', description:
+            'Message to be displayed.')
+    }
+
+	stages {
+	    stage("Say message") {
+	        steps {
+	            echo "Message: $(params.MESSAGE)"
+	        }
+	    }
+	}
+}
