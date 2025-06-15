@@ -13,7 +13,7 @@ pipeline {
 	stages {
 	    stage("Say message") {
 	        steps {
-	            echo "Message: $(params.MESSAGE)"
+	            echo "Message: ${params.MESSAGE}"
 	        }
 	    }
 	}
